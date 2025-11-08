@@ -89,7 +89,7 @@ const Movies = () => {
 
   if (!movies.length) {
     return (
-      <div className="w-full min-h-screen flex flex-col gap-5 items-center justify-center bg-background px-4 py-8 sm:px-8 sm:py-16">
+      <div className="w-full min-h-screen flex flex-col gap-5 items-center justify-center px-4 py-8 sm:px-8 sm:py-16">
         <h1 className="text-h3 md:text-h2 text-white text-center">
           Your movie list is empty
         </h1>

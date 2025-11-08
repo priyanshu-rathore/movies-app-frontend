@@ -54,7 +54,7 @@ const Register = () => {
   });
 
   return (
-    <div className="relative min-h-screen w-screen bg-background flex flex-col items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen w-screen  flex flex-col items-center justify-center overflow-hidden">
       <div className="relative z-20 w-full max-w-sm px-6">
         <form onSubmit={formik.handleSubmit} className="flex flex-col gap-6">
           <h1 className="text-white text-4xl font-bold text-center">
