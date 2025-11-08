@@ -40,7 +40,7 @@ const Register = () => {
     }),
     onSubmit: async (values) => {
       try {
-        await axios.post(apiUrl!, {
+        await axios.post(`${apiUrl}/auth/register`, {
           email: values.email,
           password: values.password,
         });
