@@ -7,12 +7,24 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Override default ignores of eslint-config-next.
   globalIgnores([
-    // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    // Custom rules go here
+    rules: {
+      // Disable the "no-explicit-any" rule completely
+      "@typescript-eslint/no-explicit-any": "off",
+
+      // OR: Show as a warning instead of error
+      // "@typescript-eslint/no-explicit-any": "warn",
+
+      // OR: allow `any` only in rest arguments
+      // "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": true }],
+    },
+  },
 ]);
 
 export default eslintConfig;

@@ -28,6 +28,7 @@ const Input: React.FC<InputProps> = ({
   name,
   disabled = false,
   type = "text",
+  ...props
 }) => {
   const baseStyles =
     "w-full px-4 py-2 rounded-md outline-none placeholder:text-white transition-all duration-200";
@@ -55,6 +56,7 @@ const Input: React.FC<InputProps> = ({
             "w-4 h-4 accent-input bg-input cursor-pointer",
             disabled && "opacity-60 cursor-not-allowed"
           )}
+         {...props}
         />
         {label && (
           <label
@@ -95,6 +97,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         disabled={disabled}
         className={clsx(baseStyles, variants[variant])}
+        {...props}
       />
 
       {variant === "error" && error && (

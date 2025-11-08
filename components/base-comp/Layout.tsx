@@ -6,27 +6,29 @@ import authVectorTwo from "@/assets/authvectotwo.png";
 interface Props {
   children: React.ReactNode;
 }
-
 const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <div className="bg-background w-screen h-screen">
-      {children}
-      <div>
+    <div className="bg-background w-screen h-screen relative overflow-hidden">
+      {/* Images as background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
         <Image
-          src={authVectorTwo} // must start with "/" if from /public
+          src={authVectorTwo}
           alt="Auth background"
-          fill // automatically fills the parent container
-          className="object-contain justify-end object-bottom"
+          fill
+          className="object-contain object-bottom"
           priority
         />
         <Image
-          src={authVectorOne} // must start with "/" if from /public
+          src={authVectorOne}
           alt="Auth background"
-          fill // automatically fills the parent container
-          className="object-contain absolute bottom-0 justify-end object-bottom"
+          fill
+          className="object-contain absolute bottom-0 object-bottom"
           priority
         />
       </div>
+
+      {/* Page content on top */}
+      <div className="relative z-10">{children}</div>
     </div>
   );
 };

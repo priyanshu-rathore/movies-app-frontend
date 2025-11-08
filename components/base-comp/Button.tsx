@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import clsx from "clsx";
 
@@ -23,14 +25,16 @@ const Button: React.FC<ButtonProps> = ({
   children,
 }) => {
   const baseStyles =
-    "px-6 py-2 rounded-md font-semibold text-sm transition-all duration-200 focus:outline-none";
+    "px-6 py-2 rounded-md font-semibold text-sm cursor-pointer transition-all duration-200 focus:outline-none";
 
   const variants: Record<ButtonVariant, string> = {
     primary:
-      "bg-[#2EE59D] text-white hover:bg-[#27c58a] disabled:opacity-50 disabled:cursor-not-allowed",
+      "bg-primary text-white hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed",
     secondary:
       "border border-white text-white hover:bg-white hover:text-[#0E2C36] disabled:opacity-50 disabled:cursor-not-allowed",
   };
+
+  
 
   return (
     <button
