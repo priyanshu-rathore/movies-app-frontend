@@ -9,6 +9,7 @@ import secureLocalStorage from "react-secure-storage";
 import MovieList from "./MovieList";
 import { useAuth } from "@/context/AuthContext";
 import Spinner from "../base-comp/Spinner";
+import { apiUrl } from "@/constants";
 
 const PAGE_SIZE = 8; // Or whatever your backend supports
 
@@ -44,7 +45,7 @@ const Movies = () => {
 
       setLoading(true);
       const { data } = await axios.get(
-        `http://localhost:4000/movies/user/${userId}?page=${page}&limit=${PAGE_SIZE}`,
+        `${apiUrl}/movies/user/${userId}?page=${page}&limit=${PAGE_SIZE}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

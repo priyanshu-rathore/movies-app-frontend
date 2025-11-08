@@ -8,6 +8,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { apiUrl } from "@/constants";
 
 interface RegisterFormValues {
   email: string;
@@ -39,7 +40,7 @@ const Register = () => {
     }),
     onSubmit: async (values) => {
       try {
-        await axios.post("http://localhost:4000/auth/register", {
+        await axios.post(apiUrl!, {
           email: values.email,
           password: values.password,
         });

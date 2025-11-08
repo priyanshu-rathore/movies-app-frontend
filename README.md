@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 Movie Manager Frontend (Next.js)
 
-## Getting Started
+A robust, mobile-first frontend for managing collections of movies, built on Next.js—featuring authentication, image uploads, server-side pagination, and seamless integration with a NestJS backend.
 
-First, run the development server:
+---
 
-```bash
+## 🚀 Features
+
+- **Authentication:** Supports both persistent (secure local) and session-based login for user flexibility.
+- **Responsive Design:** Optimized for mobile, tablet, and desktop experiences.
+- **Movie CRUD:** Create, edit, and delete movies. Every movie has a title, year, and poster image.
+- **Poster Preview:** Image drop/picker with preview before upload.
+- **Pagination:** Fast, server-driven pagination for large data sets.
+- **Elegant UI:** TailwindCSS utility classes, modular component structure.
+
+---
+
+## 📦 Getting Started
+
+### Installation
+
+git clone https://github.com/priyanshu-rathore/movies-app-frontend.git
+cd movies-app-frontend
+npm install
+
+
+### Environment Setup
+
+Create `.env.local` in your root folder with:
+
+NEXT_PUBLIC_MOVIE_API_URL=http://localhost:4000
+
+
+Make sure the backend is running and accessible at this address.
+
+---
+
+## 🧑‍💻 Development
+
+Start the app locally:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🔑 Authentication
 
-To learn more about Next.js, take a look at the following resources:
+- **Login:** On sign-in, tokens are saved either:
+  - **React Secure Storage:** If "Remember Me" is ticked (survives browser restarts).
+  - **Session Storage:** If "Remember Me" is not ticked (cleared on tab/browser close).
+- **Context Provider:** Reads from both locations. All protected routes require a valid token.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Example logic:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+if (rememberMe) {
+secureLocalStorage.setItem("accessToken", token);
+} else {
+sessionStorage.setItem("accessToken", token);
+}
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎬 Movie Management & Pagination
+
+- **Create/Edit:** Poster uploaded as a file. Backend converts to base64 as needed.
+- **Display:** All images and data retrieved from backend APIs.
+- **Pagination:** Calls the endpoint `/movies/user/{userId}?page=<page>&limit=<limit>`, receives `{ movies, totalPages }`.
+
+---
+
+## 🗄️ Folder Structure
+
+/components
+/base-comp # Shared UI components
+/movies # Movie listing, grid, drop zone, pagination, etc
+/auth # Login, register, and context
+/pages
+/edit-movie # Edit UI
+/create-movie # Add form
+/movies # Main listing
+
+
+
+---
+
+## 📑 API Usage
+
+- Uses Axios for HTTP requests.
+- Auth token included in `Authorization` header.
+- Poster image sent using `multipart/form-data`.
+
+---
+
+## 📱 Responsive UI
+
+- Layout adapts for phones, tablets, desktops.
+- Mobile: grid switches to 2-column, vertical scroll enabled, icon buttons appear where needed.
+- Full accessibility and keyboard navigation supported.
+
+---
+
+## 🛡️ Security Notes
+
+- No sensitive data is exposed in logs or UI.
+- File uploads protected via backend validation.
+- App checks auth state from secure and session storage: user cannot bypass protection.
+
+---
+
+## 📝 Contributing
+
+PRs and issues welcome! Discuss new features or report bugs.
+
+---
+
+## © License
+
+MIT. Use as you wish, commercial or personal.
+
+---
+
+This README covers every facet needed for onboarding, documenting, and scaling your Next.js movie manager frontend.

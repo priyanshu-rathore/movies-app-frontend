@@ -9,6 +9,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import secureLocalStorage from "react-secure-storage";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "@/constants";
 
 interface CreateMovieFormValues {
   title: string;
@@ -60,7 +61,7 @@ const CreateMovie = () => {
 
         formData.append("user_id", String(userId));
 
-        const response = await axios.post("http://localhost:4000/movies", formData, {
+        const response = await axios.post(`${apiUrl}/movies`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,

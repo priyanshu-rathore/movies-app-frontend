@@ -7,6 +7,7 @@ import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Spinner from "../base-comp/Spinner";
+import { apiUrl } from "@/constants";
 
 const EditMovie = () => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const EditMovie = () => {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          `http://localhost:4000/movies/${movieId}`
+          `${apiUrl}/movies/${movieId}`
         );
         setTitle(data.title);
         setPublishingYear(data.publishingYear?.toString() ?? "");
@@ -56,7 +57,7 @@ const EditMovie = () => {
       if (posterFile) formData.append("poster", posterFile);
 
       await axios.patch(
-        `http://localhost:4000/movies/${movieId}`,
+        `${apiUrl}/movies/${movieId}`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

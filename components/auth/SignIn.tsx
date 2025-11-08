@@ -10,6 +10,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import secureLocalStorage from "react-secure-storage";
 import { useAuth } from "@/context/AuthContext";
+import { apiUrl } from "@/constants";
 
 interface SignInFormValues {
   email: string;
@@ -32,7 +33,7 @@ const SignIn = () => {
     }),
     onSubmit: async (values) => {
       try {
-        const { data } = await axios.post("http://localhost:4000/auth/login", {
+        const { data } = await axios.post(`${apiUrl}/auth/login`, {
           email: values.email,
           password: values.password,
         });
